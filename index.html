@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Last Train Home: an interactive micro-story</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+	<button id="soundToggle" class="button small">sound: off</button>
+	<audio id="sfxClick"  src="assets/click.mp3"   preload="auto"></audio>
+	<audio id="sfxWin"    src="assets/win.mp3"     preload="auto"></audio>
+	<audio id="ambience"  src="assets/ambient.mp3" preload="auto" loop></audio>
+  <header class="site-head">
+    <h1>Last Train Home</h1>
+    <p class="tagline">Pick your moves. Make it home.</p>
+    <div class="bar"><span id="progress"></span></div>
+  </header>
+
+  <main>
+    <section id="card" class="story-card" aria-live="polite">
+      <h2 id="nodeTitle" class="sr-only">Scene</h2>
+      <p id="nodeText" class="text"></p>
+      <div id="choices" class="choices" role="group" aria-label="Choices"></div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <small>Jarvey..</small>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
