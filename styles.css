@@ -1,0 +1,100 @@
+:root{
+  --bg:#0b0f16;
+  --panel:#111827;
+  --ink:#e6eefc;
+  --muted:#a8b3c7;
+  --accent:#7cf7ff;
+  --accent2:#ff6bd6;
+  --ring:0 0 0 3px rgba(124,247,255,.25);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  color:var(--ink);
+  background:
+    radial-gradient(1200px 600px at 50% -20%, #111c32 0%, var(--bg) 60%),
+    linear-gradient(#0b0f16, #070a10);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Inter, Roboto, Arial, sans-serif;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+
+.site-head{max-width:880px;margin:32px auto 16px;padding:0 16px;text-align:center}
+h1{margin:.2rem 0 .25rem; font-size:clamp(1.6rem,4.2vw,2.4rem); letter-spacing:.3px}
+.tagline{margin:0 auto .6rem; color:var(--muted)}
+
+.bar{height:6px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden}
+.bar > span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+
+main{max-width:880px;margin:0 auto;padding:8px 16px 56px}
+
+.story-card{
+  background:linear-gradient(180deg, rgba(255,255,255,.02), transparent), var(--panel);
+  border:1px solid rgba(124,247,255,.14);
+  border-radius:20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 30px rgba(124,247,255,.10);
+  padding:20px 18px;
+  min-height:220px;
+  animation: enter .4s ease both;
+}
+
+.text{font-size:clamp(1rem, 1.1rem + .25vw, 1.2rem); line-height:1.7; margin:0 0 14px}
+.choices{display:flex; flex-wrap:wrap; gap:10px; margin-top:8px}
+
+.button{
+  appearance:none; border:none; outline:none; cursor:pointer;
+  padding:.75rem 1rem; border-radius:12px;
+  color:var(--ink); background:rgba(255,255,255,.02);
+  border:1px solid rgba(124,247,255,.22);
+  font-weight:600; letter-spacing:.2px;
+  transition: transform .12s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+  position:relative; overflow:hidden;
+}
+.button:hover{transform:translateY(-1px); box-shadow:0 6px 22px rgba(0,0,0,.35), var(--ring)}
+.button:focus-visible{box-shadow:var(--ring)}
+.button.secondary{border-color:rgba(255,107,214,.35)}
+.button[disabled]{opacity:.6; cursor:not-allowed}
+
+.small{font-size:.9rem; opacity:.85}
+
+.sr-only{position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+
+/* Animations */
+@keyframes enter{from{opacity:0; transform:translateY(8px) scale(.98)} to{opacity:1; transform:translateY(0) scale(1)}}
+@keyframes exit{to{opacity:0; transform:translateY(-8px) scale(.98)}}
+@keyframes shake{10%, 90% {transform: translateX(-1px)} 20%, 80% {transform: translateX(2px)} 30%,50%,70% {transform: translateX(-4px)} 40%,60% {transform: translateX(4px)}}
+.shake{animation:shake .5s ease}
+
+/* Button effect */
+.button .ripple{
+  position:absolute; border-radius:50%; transform:scale(0);
+  background:radial-gradient(circle, rgba(124,247,255,.35) 0%, rgba(124,247,255,0) 70%);
+  width:220px; height:220px; pointer-events:none; opacity:.0;
+  animation:ripple .5s ease-out forwards;
+}
+@keyframes ripple{to{transform:scale(1); opacity:.35}}
+
+/* confetti for win */
+.confetti {
+  position: fixed;
+  top: -10px;
+  left: 0;
+  width: 8px;
+  height: 14px;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation:
+    confetti-fall var(--dur, 3200ms) cubic-bezier(.15,.7,.1,1) forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+/* confetti fade */
+@keyframes confetti-fall {
+  0%   { transform: translate3d(var(--x, 0px), -10px, 0) rotate(var(--rot, 0deg)); opacity: 0; }
+  10%  { opacity: .95; }
+  100% { transform: translate3d(var(--x, 0px), 110vh, 0) rotate(calc(var(--rot, 0deg) + var(--spin, 900deg))); opacity: 0; }
+}
