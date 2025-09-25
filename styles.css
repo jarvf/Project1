@@ -98,3 +98,8 @@ main{max-width:880px;margin:0 auto;padding:8px 16px 56px}
   10%  { opacity: .95; }
   100% { transform: translate3d(var(--x, 0px), 110vh, 0) rotate(calc(var(--rot, 0deg) + var(--spin, 900deg))); opacity: 0; }
 }
+#soundToggle{
+  display: block;            
+  width: max-content;       
+  margin: 10px auto 12px;   
+}
